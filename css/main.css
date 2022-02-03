@@ -1,0 +1,196 @@
+*,
+*:after,
+*:before {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1024px;
+}
+
+.button {
+    width: 150px;
+    height: 50px;
+    background-color: #0E49B5;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    line-height: 23px;
+    transition: background-color .3s;
+}
+.button:hover {
+    background-color: #ddd;
+}
+
+.header {
+    margin-top: 8px;
+}
+
+.header_top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header_cart {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #767272;
+    border-radius: 50%;
+}
+.cart {
+    color: #767272;
+    display: block;
+    padding: 5px;
+}
+
+.header_item {
+    height: 512px;
+    display: flex;
+    margin-top: 16px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../images/ipad_air_banner_1.png');
+    background-size: cover;
+    background-position: 50% 50%;
+}
+.header_item--product {
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 72px;
+    line-height: 84px;
+}
+.header_item--button {
+    margin-top: 22px;
+}
+
+.main_search-bar {
+    position: relative;
+    max-width: 100%;
+    margin-top: 32px;
+}
+.main_search-bar--search-input {
+    height: 60px;
+    position: relative;
+    display: block;
+    width: 100%;
+    border: 1px solid #dddada;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+}
+.main_search-bar--search-input::placeholder {
+    position: relative;
+    color: #767272;
+    transform: translateX(50px);
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+.main_search-bar--search {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    z-index: 1;
+    transform: translate(20px, 20px);
+}
+.main_search-bar--filter {
+    position: absolute;
+    transform: translate(921px, -50px);
+}
+.main_search-bar--sort {
+    position: absolute;
+    transform: translate(974px, -50px);
+}
+
+.main_cards {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.card {
+    width: 30%;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border: 1px solid #E0E0E0;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+}
+.card_like {
+    position: absolute;
+    transform: translate(100px, -210px);
+}
+
+.card_info--true-false {
+    width: 15px;
+    height: 15px;
+    padding: 2px;
+    border: 1px solid #1bc943;
+    border-radius: 50%;
+}
+.card_info--true-false:nth-child(2) {
+    z-index: 1;
+}
+.card_header {
+    margin-top: 25px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+}
+.card_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.card_info--price {
+    margin-top: 8px;
+}
+.card_button {
+    margin-top: 11px;
+}
+
+.card_footer {
+    width: 100%;
+    margin-top: 14px;
+    padding: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #dae2ea;
+}
+.card_footer div:first-child {
+    display: flex;
+    align-items: start;
+}
+.card_footer--red-like {
+}
+.card_footer--reviews {
+    margin-left: 11px;
+}
+
+@media (max-width: 724px) {
+    .card {
+        width: 45%;
+    }
+}
