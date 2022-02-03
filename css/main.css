@@ -66,6 +66,7 @@ h1 {
     align-items: center;
     background-image: url('../images/ipad_air_banner_1.png');
     background-size: cover;
+    background-position: 50% 50%;
 }
 .header_item--product {
     color: #fff;
@@ -99,9 +100,7 @@ h1 {
     font-size: 18px;
     line-height: 21px;
 }
-path {
-    fill: #000;
-}
+
 .main_search-bar--search {
     width: 20px;
     height: 20px;
@@ -138,8 +137,9 @@ path {
 }
 .card_like {
     position: absolute;
-    transform: translate(120px, -210px);
+    transform: translate(100px, -210px);
 }
+
 .card_info--true-false {
     width: 15px;
     height: 15px;
@@ -187,4 +187,10 @@ path {
 }
 .card_footer--reviews {
     margin-left: 11px;
+}
+
+@media (max-width: 724px) {
+    .card {
+        width: 45%;
+    }
 }
