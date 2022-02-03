@@ -84,6 +84,7 @@ h1 {
     margin-top: 32px;
 }
 .main_search-bar--search-input {
+    padding-left: 60px;
     height: 60px;
     position: relative;
     display: block;
@@ -95,7 +96,6 @@ h1 {
 .main_search-bar--search-input::placeholder {
     position: relative;
     color: #767272;
-    transform: translateX(50px);
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
     line-height: 21px;
