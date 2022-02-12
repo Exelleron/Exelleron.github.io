@@ -29,6 +29,7 @@ h1 {
     line-height: 23px;
     transition: background-color .3s;
 }
+
 .button:hover {
     background-color: #ddd;
 }
@@ -51,6 +52,7 @@ h1 {
     border: 1px solid #767272;
     border-radius: 50%;
 }
+
 .cart {
     color: #767272;
     display: block;
@@ -68,12 +70,14 @@ h1 {
     background-size: cover;
     background-position: 50% 50%;
 }
+
 .header_item--product {
     color: #fff;
     font-family: 'Roboto', sans-serif;
     font-size: 72px;
     line-height: 84px;
 }
+
 .header_item--button {
     margin-top: 22px;
 }
@@ -83,6 +87,7 @@ h1 {
     max-width: 100%;
     margin-top: 32px;
 }
+
 .main_search-bar--search-input {
     padding-left: 60px;
     height: 60px;
@@ -93,6 +98,7 @@ h1 {
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
 }
+
 .main_search-bar--search-input::placeholder {
     position: relative;
     color: #767272;
@@ -108,10 +114,12 @@ h1 {
     z-index: 1;
     transform: translate(20px, 20px);
 }
+
 .main_search-bar--filter {
     position: absolute;
     transform: translate(921px, -50px);
 }
+
 .main_search-bar--sort {
     position: absolute;
     transform: translate(974px, -50px);
@@ -123,8 +131,10 @@ h1 {
     flex-wrap: wrap;
     justify-content: space-between;
 }
+
 .card {
     width: 30%;
+    padding-top: 20px;
     margin-bottom: 50px;
     display: flex;
     flex-direction: column;
@@ -135,21 +145,23 @@ h1 {
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
 }
+
 .card_like {
     position: absolute;
-    transform: translate(100px, -210px);
+    transform: translate(100px, -10px);
 }
 
 .card_info--true-false {
     width: 15px;
     height: 15px;
     padding: 2px;
-    border: 1px solid #1bc943;
     border-radius: 50%;
 }
+
 .card_info--true-false:nth-child(2) {
     z-index: 1;
 }
+
 .card_header {
     margin-top: 25px;
     font-family: 'Roboto', sans-serif;
@@ -157,15 +169,18 @@ h1 {
     font-size: 24px;
     line-height: 28px;
 }
+
 .card_info {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+
 .card_info--price {
     margin-top: 8px;
 }
+
 .card_button {
     margin-top: 11px;
 }
@@ -179,12 +194,17 @@ h1 {
     align-items: center;
     background-color: #dae2ea;
 }
+
 .card_footer div:first-child {
     display: flex;
     align-items: start;
 }
+
 .card_footer--red-like {
+    width: 20px;
+    height: 20px;
 }
+
 .card_footer--reviews {
     margin-left: 11px;
 }
