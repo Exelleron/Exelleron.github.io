@@ -13,16 +13,6 @@
               href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
         <link rel="stylesheet" href="css/main.css">
         <title>mac-outlet</title>
-        <style>
-            .card_image{
-                width: 100px;
-                height: 100px;
-            }
-            img{
-                width: 100%;
-                height: 100%;
-            }
-        </style>
     </head>
     <body>
         <header class="header container">
@@ -65,20 +55,231 @@
                     placeholder="Enter device name..."
                     type="search"
                 >
-                <img
-                    class="main_search-bar--filter"
-                    src="images/filter.svg"
-                    alt="filter"
-                >
-                <img
-                    class="main_search-bar--sort"
-                    src="images/sort.svg"
-                    alt="sort"
-                >
+                <div class="main_search-bar--buttons">
+                    <img
+                        class="main_search-bar--filter"
+                        src="images/filter.svg"
+                        alt="filter"
+                    >
+                    <img
+                        class="main_search-bar--sort"
+                        src="images/sort.svg"
+                        alt="sort"
+                    >
+                </div>
             </div>
 
-            <div id="items" class="main_cards">
+            <div class="main_content">
+                <div class="filter">
+                    <div class="filter_price">
+                        <div class="filter_header">
+                            <div>
+                                Price
+                            </div>
+
+                            <input
+                                id="first-input"
+                                class="filter_arrow"
+                                type="checkbox"
+                                hidden
+                            >
+                            <label for="first-input"></label>
+                        </div>
+
+                        <div class="opened filter_price--amounts">
+                            <label class="filter_price--label">
+                                From
+                                <input
+                                    class="filter_price--input"
+                                    type="number"
+                                    value="1"
+                                >
+                            </label>
+                            <label class="filter_price--label">
+                                To
+                                <input
+                                    class="filter_price--input"
+                                    type="number"
+                                    value="999999"
+                                >
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter_color">
+                        <div class="filter_header">
+                            <div>
+                                Color
+                            </div>
+                            <input
+                                id="second-input"
+                                class="filter_arrow"
+                                type="checkbox"
+                                hidden
+                            >
+                            <label for="second-input"></label>
+                        </div>
+
+                        <div class="opened filter_checkboxes">
+                            <label class="filter_checkboxes--label">
+                                <input type="checkbox">
+                                Red
+                            </label>
+                            <label class="filter_checkboxes--label">
+                                <input type="checkbox">
+                                Green
+                            </label>
+                            <label class="filter_checkboxes--label">
+                                <input type="checkbox">
+                                Black
+                            </label>
+                            <label class="filter_checkboxes--label">
+                                <input type="checkbox">
+                                White
+                            </label>
+                            <label class="filter_checkboxes--label">
+                                <input type="checkbox">
+                                Blue
+                            </label>
+                            <label class="filter_checkboxes--label">
+                                <input type="checkbox">
+                                Grey
+                            </label>
+                            <label class="filter_checkboxes--label">
+                                <input type="checkbox">
+                                Gold
+                            </label>
+                            <label class="filter_checkboxes--label">
+                                <input type="checkbox">
+                                Yellow
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter_memory">
+                        <div class="filter_header">
+                            <div>
+                                Memory
+                            </div>
+                            <input
+                                id="third-input"
+                                class="filter_arrow"
+                                type="checkbox"
+                                hidden
+                            >
+                            <label for="third-input"></label>
+                        </div>
+                        <div class="opened filter_checkboxes">
+                            <label class="filter_checkboxes--label">
+                                <input type="checkbox">
+                                32 Gb
+                            </label>
+                            <label class="filter_checkboxes--label">
+                                <input type="checkbox">
+                                512 Gb
+                            </label>
+                            <label class="filter_checkboxes--label">
+                                <input type="checkbox">
+                                64 Gb
+                            </label>
+                            <label class="filter_checkboxes--label">
+                                <input type="checkbox">
+                                1 TB
+                            </label>
+                            <label class="filter_checkboxes--label">
+                                <input type="checkbox">
+                                128 Gb
+                            </label>
+                            <label class="filter_checkboxes--label">
+                                <input type="checkbox">
+                                2 TB
+                            </label>
+                            <label class="filter_checkboxes--label">
+                                <input type="checkbox">
+                                256 Gb
+                            </label>
+                            <label class="filter_checkboxes--label">
+                                <input type="checkbox">
+                                4 TB
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter_os">
+                        <div class="filter_header">
+                            <div>
+                                Os
+                            </div>
+                            <input
+                                id="fourth-input"
+                                class="filter_arrow"
+                                type="checkbox"
+                                hidden
+                            >
+                            <label for="fourth-input"></label>
+                        </div>
+                        <div class="opened filter_checkboxes">
+                            <label class="filter_checkboxes--label">
+                                <input type="checkbox">
+                                IOS
+                            </label>
+                            <label class="filter_checkboxes--label">
+                                <input type="checkbox">
+                                Mac OS
+                            </label>
+                            <label class="filter_checkboxes--label">
+                                <input type="checkbox">
+                                tvOS
+                            </label>
+                            <label class="filter_checkboxes--label">
+                                <input type="checkbox">
+                                Watch OS
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter_display">
+                        <div class="filter_header">
+                            <div>
+                                Display
+                            </div>
+                            <input
+                                id="fifth-input"
+                                class="filter_arrow"
+                                type="checkbox"
+                                hidden
+                            >
+                            <label for="fifth-input"></label>
+                        </div>
+                        <div class="opened filter_checkboxes">
+                            <label class="filter_checkboxes--label">
+                                <input type="checkbox">
+                                2-5 inch
+                            </label>
+                            <label class="filter_checkboxes--label">
+                                <input type="checkbox">
+                                5-7 inch
+                            </label>
+                            <label class="filter_checkboxes--label">
+                                <input type="checkbox">
+                                7-12 inch
+                            </label>
+                            <label class="filter_checkboxes--label">
+                                <input type="checkbox">
+                                12-16 inch
+                            </label>
+                            <label class="filter_checkboxes--label">
+                                <input type="checkbox">
+                                +16 inch
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="items" class="main_cards">
+                </div>
             </div>
+
         </main>
 
         <script src="js/items.js"></script>

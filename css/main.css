@@ -12,9 +12,15 @@ h1 {
     font-weight: inherit;
 }
 
+img {
+    width: 100%;
+    height: 100%;
+}
+
 .container {
     margin: 0 auto;
     max-width: 1024px;
+    overflow: hidden;
 }
 
 .button {
@@ -30,7 +36,7 @@ h1 {
     transition: background-color .3s;
 }
 
-.button:hover {
+.gray-button {
     background-color: #ddd;
 }
 
@@ -115,21 +121,148 @@ h1 {
     transform: translate(20px, 20px);
 }
 
-.main_search-bar--filter {
+.main_search-bar--buttons {
     position: absolute;
-    transform: translate(921px, -50px);
+    top: 50%;
+    right: 10px;
+
+    transform: translateY(-50%);
+}
+
+.main_search-bar--filter {
+    width: 40px;
+    height: 40px;
 }
 
 .main_search-bar--sort {
+    width: 40px;
+    height: 40px;
+}
+
+.main_content {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+}
+
+.filter.open {
+    transform: translateX(0);
+}
+
+.filter {
+    margin-top: 40px;
     position: absolute;
-    transform: translate(974px, -50px);
+    top: 0;
+    left: 0;
+    padding: 15px 30px;
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+    min-width: 33%;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    transform: translateX(-120%);
+    transition: all .3s;
+}
+
+
+.filter_header {
+    margin: -1em -2em 5px;
+    padding: 20px 2em;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+}
+
+.filter_price .filter_header {
+    border: 1px solid #ddd;
+    border-radius: 5px 5px 0 0;
+}
+
+.filter_arrow {
+    display: none;
+}
+
+.filter_arrow + label {
+    cursor: pointer;
+}
+
+.filter_arrow + label:before {
+    content: "";
+    display: inline-block;
+    width: 15px;
+    height: 20px;
+    background-image: url(../img/icons/arrow_left.svg);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: contain;
+    transition: all .3s;
+}
+
+.filter_arrow:checked + label:before {
+    transform: rotate(-90deg);
+}
+
+.filter_price--amounts {
+    margin-bottom: 25px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
+.colored {
+    background-color: #EDF3FF;
+}
+
+.filter_price--label {
+    display: flex;
+    justify-content: space-between;
+}
+
+.filter_price--input {
+    width: 50%;
+}
+
+.filter_checkboxes {
+    margin: 25px 0 25px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.closed {
+    display: none;
+}
+
+.filter_os .filter_checkboxes,
+.filter_display .filter_checkboxes {
+    flex-direction: column;
+}
+
+.filter_checkboxes--label {
+    display: block;
+    width: 50%;
+}
+
+.main_cards.open {
+    width: 67%;
+    min-width: 67%;
 }
 
 .main_cards {
+    width: 100%;
+    min-width: 100%;
     margin-top: 40px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    transition: all .3s;
+}
+
+.main_cards.open .card {
+    width: 45%;
+    margin-left: 30px;
 }
 
 .card {
@@ -144,11 +277,17 @@ h1 {
     border: 1px solid #E0E0E0;
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
+    transition: all .3s;
 }
 
 .card_like {
     position: absolute;
-    transform: translate(100px, -10px);
+    transform: translate(100px, -160px);
+}
+
+.card_image {
+    height: 150px;
+    width: 150px;
 }
 
 .card_info--true-false {
@@ -207,6 +346,93 @@ h1 {
 
 .card_footer--reviews {
     margin-left: 11px;
+}
+
+.grey-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    background-color: rgba(0, 0, 0, .3);
+}
+
+.modal-card {
+    /*padding: 30px;*/
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Roboto', sans-serif;
+}
+
+.modal-card_img {
+    width: 250px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid black;
+}
+
+.modal-card_info--name {
+    font-weight: 700;
+}
+
+.modal-card_info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.modal-card_info--comments {
+    padding: 14px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #DAE2EA;
+    border-radius: 10px;
+}
+
+.red-like {
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+
+.modal-card_info--orders div:first-child {
+    font-weight: 700;
+}
+
+.modal-card_info--specifications {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-card_buy {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid black;
+}
+
+.modal-card_buy--price {
+    margin-top: 10px;
+    font-weight: 700;
+}
+
+.modal-card_buy--stock {
+    margin-top: 10px;
+}
+
+.modal-card_buy--button {
+    margin-top: 10px;
 }
 
 @media (max-width: 724px) {
