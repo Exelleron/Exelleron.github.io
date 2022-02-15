@@ -3,9 +3,87 @@
 let itemsContainer = document.getElementById('items');
 itemsContainer.innerHTML = '';
 
+
+function innerModalCard (item){
+    const currentCard = `<div class="grey-background" onclick="removeModalCard(event)">
+            <div class="modal-card container">
+                <div class="modal-card_img">
+                    <img src="${item.imgUrl}" alt="name">
+                </div>
+
+                <div class="modal-card_info">
+                    <div class="modal-card_info--name">${item.name}</div>
+
+                    <div class="modal-card_info--comments">
+                        <div>
+                            <img
+                                src="images/red-like.svg"
+                                alt=""
+                                class="card_footer--red-like"
+                            >
+                            <p class="card_footer--reviews">
+                                <strong>${item.orderInfo.reviews}%</strong>
+                                Positive reviews
+                                <br>
+                                Above avarage
+                            </p>
+                        </div>
+                        <div>
+                            <p class="card_footer--orders">
+                                <strong>${Math.round(0.5 + Math.random() * 10000)}</strong>
+                                <br>
+                                orders
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="modal-card_info--specifications">
+
+                        <span class="specifications_color">${item.color}</span>
+
+                        <span class="specifications_os">${item.os}</span>
+
+                        <span class="specifications_chip">${item.chip.name}</span>
+
+                        <span class="specifications_height">${item.size.height}</span>
+
+                        <span class="specifications_width">${item.size.width}</span>
+
+                        <span class="specifications_depth">${item.size.depth}</span>
+
+                        <span class="specifications_weight">${item.size.weight}</span>
+
+                    </div>
+                </div>
+
+                <div class="modal-card_buy">
+                    <div class="modal-card_buy--price">
+                        $ ${item.price}
+                    </div>
+
+                    <div class="modal-card_buy--stock">
+                        Stock: <b>${item.orderInfo.inStock} pcs.</b>
+                    </div>
+
+                    <button class="button modal-card_buy--button ${!item.orderInfo.inStock ? 'gray-button' : ''}">
+                        Add to cart
+                    </button>
+                </div>
+            </div>
+        </div>`
+    document.body.insertAdjacentHTML('afterbegin', currentCard);
+}
+
+function removeModalCard(event) {
+    if (event.target.className.includes('grey-background')){
+        event.currentTarget.remove()
+    }
+}
+
 items.map(item => {
-    const card = `<div class="card" onclick="innerModalCard()">
-                    <div class="card_like">
+    const element = document.createElement('div');
+    const card = () => {
+        return (`<div class="card_like">
                         <img src="images/like.svg" alt="like">
                     </div>
 
@@ -60,82 +138,12 @@ items.map(item => {
                                 orders
                             </p>
                         </div>
-                    </div>
-                </div>`;
-
-    itemsContainer.innerHTML += card;
-
-
-    function innerModalCard (item, event){
-        const modalCard = document.createElement('div');
-        modalCard.innerHTML = `<div class="grey-background">
-            <div class="modal-card container">
-                <div class="modal-card_img">
-                    <img src="${item.imgUrl}" alt="name">
-                </div>
-
-                <div class="modal-card_info">
-                    <div class="modal-card_info--name">${item.name}</div>
-
-                    <div class="modal-card_info--comments">
-                        <div>
-                            <img
-                                src="images/red-like.svg"
-                                alt=""
-                                class="card_footer--red-like"
-                            >
-                            <p class="card_footer--reviews">
-                                <strong>${item.orderInfo.reviews}%</strong>
-                                Positive reviews
-                                <br>
-                                Above avarage
-                            </p>
-                        </div>
-                        <div>
-                            <p class="card_footer--orders">
-                                <strong>${Math.round(0.5 + Math.random() * 10000)}</strong>
-                                <br>
-                                orders
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="modal-card_info--specifications">
-
-                        <span class="specifications_color">${items.color}</span>
-
-                        <span class="specifications_os">${items.os}</span>
-
-                        <span class="specifications_chip">${items.chip.name}</span>
-
-                        <span class="specifications_height">${items.size.height}</span>
-
-                        <span class="specifications_width">${items.size.width}</span>
-
-                        <span class="specifications_depth">${items.size.depth}</span>
-
-                        <span class="specifications_weight">${items.size.weight}</span>
-
-                    </div>
-                </div>
-
-                <div class="modal-card_buy">
-                    <div class="modal-card_buy--price">
-                        $ ${item.price}
-                    </div>
-
-                    <div class="modal-card_buy--stock">
-                        Stock: <b>${item.orderInfo.inStock} pcs.</b>
-                    </div>
-
-                    <button class="button modal-card_buy--button ${!item.orderInfo.inStock ? 'gray-button' : ''}">
-                        Add to cart
-                    </button>
-                </div>
-            </div>
-        </div>`
-        document.body.appendChild(modalCard);
-    }
+                    </div>`)
+    };
+    element.onclick = () => innerModalCard(item);
+    element.classList.add('card');
+    element.insertAdjacentHTML('beforeend', card());
+    itemsContainer.insertAdjacentElement('beforeend', element);
 });
 
 document.querySelector('.main_search-bar--filter').addEventListener('click', function () {
