@@ -111,11 +111,11 @@ document.querySelectorAll('.filter input').forEach(elem => {
 
             let isFilterEmpty = true;
 
-            const filtration = (items)=> {
+            function filtration(items) {
                 return isFilterEmpty ? items : items.filter(item => filteredData(item));
 
 
-
+                function filteredData(item) {
                     let res = 0;
                     for (let key in filter) {
                         switch (key) {
@@ -135,8 +135,8 @@ document.querySelectorAll('.filter input').forEach(elem => {
                         }
                     }
                     return (res > -1);
-                };
-
+                }
+            }
 
             /////
 
