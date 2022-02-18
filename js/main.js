@@ -4,7 +4,7 @@ let itemsContainer = document.getElementById('items');
 itemsContainer.innerHTML = '';
 
 
-function innerModalCard (item){
+function innerModalCard(item) {
     const currentCard = `<div class="grey-background" onclick="removeModalCard(event)">
             <div class="modal-card container">
                 <div class="modal-card_img">
@@ -75,7 +75,7 @@ function innerModalCard (item){
 }
 
 function removeModalCard(event) {
-    if (event.target.className.includes('grey-background')){
+    if (event.target.className.includes('grey-background')) {
         event.currentTarget.remove()
     }
 }
@@ -110,31 +110,33 @@ document.querySelectorAll('.filter input').forEach(elem => {
             //////
 
             let isFilterEmpty = true;
-            function filtration(items) {
+
+            const filtration = (items)=> {
                 return isFilterEmpty ? items : items.filter(item => filteredData(item));
-            }
 
-            function filteredData(item) {
-                let res = 0;
-                for (let key in filter) {
-                    switch (key) {
-                        case 'price':
-                            res = (filter[key].from < item.price && filter[key].to > item.price) ? 1 : -1;
-                            break;
-                        case 'color':
-                            res = filter[key].findIndex(filterColor => item.color.findIndex(color => filterColor === color) > -1);
-                            break;
-                        case 'display':
-                            res = filter[key].findIndex(filterItem => item.display > filterItem.from && item.display < filterItem.to)
-                            break;
-                    }
 
-                    if (res === -1) {
-                        break;
+
+                    let res = 0;
+                    for (let key in filter) {
+                        switch (key) {
+                            case 'price':
+                                res = (filter[key].from < item.price && filter[key].to > item.price) ? 1 : -1;
+                                break;
+                            case 'color':
+                                res = filter[key].findIndex(filterColor => item.color.findIndex(color => filterColor === color) > -1);
+                                break;
+                            case 'display':
+                                res = filter[key].findIndex(filterItem => item.display > filterItem.from && item.display < filterItem.to)
+                                break;
+                        }
+
+                        if (res === -1) {
+                            break;
+                        }
                     }
-                }
-                return (res > -1);
-            }
+                    return (res > -1);
+                };
+
 
             /////
 
@@ -235,7 +237,6 @@ document.querySelectorAll('.filter_arrow').forEach(elem => {
         event.target.closest('.filter_header').nextElementSibling.classList.toggle('closed')
     })
 });
-
 
 
 // const filter = {
