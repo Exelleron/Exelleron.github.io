@@ -80,9 +80,17 @@ function removeModalCard(event) {
     }
 }
 
+let filter = {
+    price: {from: 0, to: 0},
+    color: [],
+    memory: [],
+    os: [],
+    display: [],
+};
+
+
 document.querySelectorAll('.filter input').forEach(elem => {
     elem.addEventListener('change', function () {
-        const filter = {display: [], memory: [], color: [], os:[], price: {min: 0, max: 10000}};
 
         document.querySelectorAll('.filter_display input:checked').forEach(elem => {
             filter.display.push(elem.value)
@@ -98,21 +106,56 @@ document.querySelectorAll('.filter input').forEach(elem => {
         });
         filter.price.min = document.querySelector('.filter_price--min').value;
         items.map(item => {
-            if (filter.memory.length && !filter.memory.includes(item.storage)){
-                return
+
+            //////
+
+            let isFilterEmpty = true;
+            function filtration(items) {
+                return isFilterEmpty ? items : items.filter(item => filteredData(item));
             }
-            if (filter.color.length && !filter.color.includes(item.color)){
-                return
+
+            function filteredData(item) {
+                let res = 0;
+                for (let key in filter) {
+                    switch (key) {
+                        case 'price':
+                            res = (filter[key].from < item.price && filter[key].to > item.price) ? 1 : -1;
+                            break;
+                        case 'color':
+                            res = filter[key].findIndex(filterColor => item.color.findIndex(color => filterColor === color) > -1);
+                            break;
+                        case 'display':
+                            res = filter[key].findIndex(filterItem => item.display > filterItem.from && item.display < filterItem.to)
+                            break;
+                    }
+
+                    if (res === -1) {
+                        break;
+                    }
+                }
+                return (res > -1);
             }
-            if (filter.display.length && !filter.display.includes(item.display)){
-                return
-            }
-            if (filter.os.length && !filter.os.includes(item.os)){
-                return
-            }
-            if (filter.price.min > item.price){
-                return
-            }
+
+            /////
+
+            // if (filter.memory.length && !filter.memory.includes(item.storage)){
+            //     return
+            // }
+            // if (filter.color.length && !filter.color.includes(item.color)){
+            //     return
+            // }
+            // if (filter.display.length && !filter.display.includes(item.display)){
+            //     return
+            // }
+            // if (filter.os.length && !filter.os.includes(item.os)){
+            //     return
+            // }
+            // if (filter.price.min > item.price){
+            //     return
+            // }
+
+            /////
+
             const element = document.createElement('div');
             const card = () => {
                 return (`<div class="card_like">
