@@ -9,8 +9,8 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
             rel="stylesheet">
-        <link rel="stylesheet"
-              href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+        <!--        <link rel="stylesheet"-->
+        <!--              href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">-->
         <link rel="stylesheet" href="css/main.css">
         <title>mac-outlet</title>
     </head>
@@ -19,17 +19,86 @@
             <div class="header_top">
                 <div class="header_logo">
                     <img
+                        class="header_logo--image"
                         src="images/mac-outlet.jpg"
                         alt="logo"
                     >
                 </div>
 
                 <div class="header_cart">
-                    <img
-                        class="cart"
-                        src="images/cart.svg"
-                        alt="cart"
+                    <div class="cart">
+                        <div class="cart_header">
+                            <h1 class="cart_header--h1">
+                                Shopping Cart
+                            </h1>
+                            <span class="cart_header--par">
+                    Checkout is almost done!
+                </span>
+                        </div>
+
+                        <div class="cart_content">
+                            <div class="cart_content--image-container">
+                                <img src="images/image_4.png" class="card_content--image">
+                            </div>
+
+                            <div class="cart_content--info">
+                                <div class="cart_content--name">
+                                    Name
+                                </div>
+                                <div class="cart_content--price">
+                                    Price
+                                </div>
+                            </div>
+
+                            <div class="cart_buttons">
+                                <input
+                                    id="arrow-left"
+                                    type="checkbox"
+                                    class="cart_arrows cart_buttons--arrow-left"
+                                    hidden
+                                >
+                                <label for="arrow-left"></label>
+                                <div class="cart_buttons--counter">
+                                    5
+                                </div>
+                                <input
+                                    id="arrow-right"
+                                    type="checkbox"
+                                    class="cart_arrows cart_buttons--arrow-right"
+                                    hidden
+                                >
+                                <label for="arrow-right"></label>
+                                <input
+                                    id="remove"
+                                    type="checkbox"
+                                    class="cart_arrows cart_buttons--remove"
+                                    hidden
+                                >
+                                <label for="remove"></label>
+                            </div>
+                        </div>
+
+                        <div class="cart_footer">
+                <span>
+                    Total amount: <b>3 ptc.</b>
+                </span>
+                            <span>
+                    Total price: <b>1699$</b>
+                </span>
+                        </div>
+
+                        <button class="cart_button">
+                            Buy
+                        </button>
+                    </div>
+                    <input
+                        id="cart-icon"
+                        type="checkbox"
+                        class="cart-icon"
+                        hidden
                     >
+                    <label for="cart-icon"></label>
+
                 </div>
             </div>
 
@@ -90,7 +159,7 @@
                             <label class="filter_price--label">
                                 From
                                 <input
-                                    class="filter_price--input"
+                                    class="filter_price--input filter_price--min"
                                     type="number"
                                     value="1"
                                 >
@@ -98,7 +167,7 @@
                             <label class="filter_price--label">
                                 To
                                 <input
-                                    class="filter_price--input"
+                                    class="filter_price--input filter_price--max"
                                     type="number"
                                     value="999999"
                                 >
@@ -122,35 +191,35 @@
 
                         <div class="opened filter_checkboxes">
                             <label class="filter_checkboxes--label">
-                                <input type="checkbox">
+                                <input type="checkbox" value="Red">
                                 Red
                             </label>
                             <label class="filter_checkboxes--label">
-                                <input type="checkbox">
+                                <input type="checkbox" value="Green">
                                 Green
                             </label>
                             <label class="filter_checkboxes--label">
-                                <input type="checkbox">
+                                <input type="checkbox" value="Black">
                                 Black
                             </label>
                             <label class="filter_checkboxes--label">
-                                <input type="checkbox">
+                                <input type="checkbox" value="White">
                                 White
                             </label>
                             <label class="filter_checkboxes--label">
-                                <input type="checkbox">
+                                <input type="checkbox" value="Blue">
                                 Blue
                             </label>
                             <label class="filter_checkboxes--label">
-                                <input type="checkbox">
+                                <input type="checkbox" value="Grey">
                                 Grey
                             </label>
                             <label class="filter_checkboxes--label">
-                                <input type="checkbox">
+                                <input type="checkbox" value="Gold">
                                 Gold
                             </label>
                             <label class="filter_checkboxes--label">
-                                <input type="checkbox">
+                                <input type="checkbox" value="Yellow">
                                 Yellow
                             </label>
                         </div>
@@ -171,35 +240,35 @@
                         </div>
                         <div class="opened filter_checkboxes">
                             <label class="filter_checkboxes--label">
-                                <input type="checkbox">
+                                <input type="checkbox" value="32">
                                 32 Gb
                             </label>
                             <label class="filter_checkboxes--label">
-                                <input type="checkbox">
+                                <input type="checkbox" value="512">
                                 512 Gb
                             </label>
                             <label class="filter_checkboxes--label">
-                                <input type="checkbox">
+                                <input type="checkbox" value="64">
                                 64 Gb
                             </label>
                             <label class="filter_checkboxes--label">
-                                <input type="checkbox">
+                                <input type="checkbox" value="1024">
                                 1 TB
                             </label>
                             <label class="filter_checkboxes--label">
-                                <input type="checkbox">
+                                <input type="checkbox" value="128">
                                 128 Gb
                             </label>
                             <label class="filter_checkboxes--label">
-                                <input type="checkbox">
+                                <input type="checkbox" value="2048">
                                 2 TB
                             </label>
                             <label class="filter_checkboxes--label">
-                                <input type="checkbox">
+                                <input type="checkbox" value="256">
                                 256 Gb
                             </label>
                             <label class="filter_checkboxes--label">
-                                <input type="checkbox">
+                                <input type="checkbox" value="4096">
                                 4 TB
                             </label>
                         </div>
@@ -220,19 +289,19 @@
                         </div>
                         <div class="opened filter_checkboxes">
                             <label class="filter_checkboxes--label">
-                                <input type="checkbox">
+                                <input type="checkbox" value="IOS">
                                 IOS
                             </label>
                             <label class="filter_checkboxes--label">
-                                <input type="checkbox">
+                                <input type="checkbox" value="macOS">
                                 Mac OS
                             </label>
                             <label class="filter_checkboxes--label">
-                                <input type="checkbox">
+                                <input type="checkbox" value="tvOS">
                                 tvOS
                             </label>
                             <label class="filter_checkboxes--label">
-                                <input type="checkbox">
+                                <input type="checkbox" value="watchOS">
                                 Watch OS
                             </label>
                         </div>
@@ -253,23 +322,23 @@
                         </div>
                         <div class="opened filter_checkboxes">
                             <label class="filter_checkboxes--label">
-                                <input type="checkbox">
+                                <input type="checkbox" value="2-5">
                                 2-5 inch
                             </label>
                             <label class="filter_checkboxes--label">
-                                <input type="checkbox">
+                                <input type="checkbox" value="5-7">
                                 5-7 inch
                             </label>
                             <label class="filter_checkboxes--label">
-                                <input type="checkbox">
+                                <input type="checkbox" value="7-12">
                                 7-12 inch
                             </label>
                             <label class="filter_checkboxes--label">
-                                <input type="checkbox">
+                                <input type="checkbox" value="12-16">
                                 12-16 inch
                             </label>
                             <label class="filter_checkboxes--label">
-                                <input type="checkbox">
+                                <input type="checkbox" value="16-100">
                                 +16 inch
                             </label>
                         </div>
