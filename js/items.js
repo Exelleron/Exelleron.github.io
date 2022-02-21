@@ -3,7 +3,7 @@ const items = [
         id: 1,
         category: 'mac',
         imgUrl: 'items/macbook-air.png',
-        name: 'MacBook Air',
+        name: 'MacBook Air1111',
         display: 13.3, // дюймы
         color: ['Gold', 'Silver', 'Space Grey'],
         price: 999, // доллары

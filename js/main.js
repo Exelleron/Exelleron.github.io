@@ -21,7 +21,10 @@ function innerModalCard(item) {
                                 alt=""
                                 class="card_footer--red-like"
                             >
-                            <p class="card_footer--reviews">
+                        </div>
+                        <div>
+                            
+                            <p class="card_footer--reviews modal_card--reviews">
                                 <strong>${item.orderInfo.reviews}%</strong>
                                 Positive reviews
                                 <br>
@@ -39,19 +42,19 @@ function innerModalCard(item) {
 
                     <div class="modal-card_info--specifications">
 
-                        <span class="specifications_color">${item.color}</span>
+                        <span class="specifications_color">Color<b>: ${item.color}</b></span>
 
-                        <span class="specifications_os">${item.os}</span>
+                        <span class="specifications_os">Operating System<b>: ${item.os}</b></span>
 
-                        <span class="specifications_chip">${item.chip.name}</span>
+                        <span class="specifications_chip">Chip: <b>: ${item.chip.name}</b></span>
 
-                        <span class="specifications_height">${item.size.height}</span>
+                        <span class="specifications_height">Height<b>: ${item.size.height}</b></span>
 
-                        <span class="specifications_width">${item.size.width}</span>
+                        <span class="specifications_width">Width<b>: ${item.size.width}</b></span>
 
-                        <span class="specifications_depth">${item.size.depth}</span>
+                        <span class="specifications_depth">Depth<b>: ${item.size.depth}</b></span>
 
-                        <span class="specifications_weight">${item.size.weight}</span>
+                        <span class="specifications_weight">Weight<b>: ${item.size.weight}</b></span>
 
                     </div>
                 </div>
@@ -70,7 +73,7 @@ function innerModalCard(item) {
                     </button>
                 </div>
             </div>
-        </div>`
+        </div>`;
     document.body.insertAdjacentHTML('afterbegin', currentCard);
 }
 
@@ -80,7 +83,7 @@ function removeModalCard(event) {
     }
 }
 
-let filter = {
+const defaultFilterValue = {
     price: {from: 0, to: 0},
     color: [],
     memory: [],
@@ -88,79 +91,99 @@ let filter = {
     display: [],
 };
 
+let filter = JSON.parse(JSON.stringify(defaultFilterValue));
 
 document.querySelectorAll('.filter input').forEach(elem => {
     elem.addEventListener('change', function () {
 
+       filter = JSON.parse(JSON.stringify(defaultFilterValue));
         document.querySelectorAll('.filter_display input:checked').forEach(elem => {
-            filter.display.push(elem.value)
+            filterUpdate(elem, 'display')
         });
         document.querySelectorAll('.filter_memory input:checked').forEach(elem => {
-            filter.memory.push(elem.value)
+            filterUpdate(elem, 'memory')
         });
         document.querySelectorAll('.filter_color input:checked').forEach(elem => {
-            filter.color.push(elem.value)
+            filterUpdate(elem, 'color')
         });
-        document.querySelectorAll('.filter_os input:checked').forEach(elem => {
-            filter.os.push(elem.value)
+        document.querySelectorAll('.filter_os  input:checked').forEach(elem => {
+            filterUpdate(elem, 'os')
         });
-        filter.price.min = document.querySelector('.filter_price--min').value;
-        items.map(item => {
 
-            //////
+        filter.price.from = Number(document.querySelector('.filter_price--min').value);
+        filter.price.to = Number(document.querySelector('.filter_price--max').value);
+        cardRender(items)
+    });
 
-            let isFilterEmpty = true;
+    elem.addEventListener('keyup', function () {
+        filter.price.from = Number(document.querySelector('.filter_price--min').value);
+        filter.price.to = Number(document.querySelector('.filter_price--max').value);
+        cardRender(items)
+    })
+});
 
-            function filtration(items) {
-                return isFilterEmpty ? items : items.filter(item => filteredData(item));
+function filterUpdate(el, key) {
+    let defaultValue = el.value;
+    if (el.checked) {
+        let index = filter[key].findIndex(filterValue => filterValue.id === defaultValue);
+        if (index === -1) {
+            filter[key].push(filterParmsHandler[key](defaultValue));
+        }
+    }
+}
 
+const filterParmsHandler = {
+    color: (val) => ({id: val}),
+    memory: (val) => ({id: val}),
+    os: (val) => ({id: val}),
+    display: (val) => ({id: val, from: val.split("-")[0], to: val.split("-")[1]}),
+};
 
-                function filteredData(item) {
-                    let res = 0;
-                    for (let key in filter) {
-                        switch (key) {
-                            case 'price':
-                                res = (filter[key].from < item.price && filter[key].to > item.price) ? 1 : -1;
-                                break;
-                            case 'color':
-                                res = filter[key].findIndex(filterColor => item.color.findIndex(color => filterColor === color) > -1);
-                                break;
-                            case 'display':
-                                res = filter[key].findIndex(filterItem => item.display > filterItem.from && item.display < filterItem.to)
-                                break;
-                        }
+function filtration(items) {
+    return items.filter(item => filteredData(item));
+}
 
-                        if (res === -1) {
-                            break;
-                        }
-                    }
-                    return (res > -1);
+function filteredData(device) {
+    let res = 0;
+    for (let key in filter) {
+        switch (key) {
+            case 'price':
+                if (filter[key].from && filter[key].to) {
+                    res = (filter[key].from <= device.price && filter[key].to >= device.price) ? 1 : -1;
                 }
-            }
+                break;
+            case 'storage':
+            case 'os':
+                if (filter[key].length > 0) {
+                    res = filter[key].findIndex(filterStorage => String(device[key]) === filterStorage.id);
+                }
+                break;
+            case 'color':
+                if (filter[key].length > 0) {
+                    res = filter[key].findIndex(filterColor => device.color.includes(filterColor.id));
+                }
+                break;
 
-            /////
+            case 'display':
+                if (filter[key].length > 0) {
+                    res = filter[key].findIndex(filterItem => device.display > filterItem.from && device.display < filterItem.to)
+                }
+                break
+        }
+        if (res === -1) {
+            break
+        }
+    }
+    return (res > -1);
+}
 
-            // if (filter.memory.length && !filter.memory.includes(item.storage)){
-            //     return
-            // }
-            // if (filter.color.length && !filter.color.includes(item.color)){
-            //     return
-            // }
-            // if (filter.display.length && !filter.display.includes(item.display)){
-            //     return
-            // }
-            // if (filter.os.length && !filter.os.includes(item.os)){
-            //     return
-            // }
-            // if (filter.price.min > item.price){
-            //     return
-            // }
-
-            /////
-
-            const element = document.createElement('div');
-            const card = () => {
-                return (`<div class="card_like">
+function cardRender(devices) {
+    let resArray =  filtration(devices);
+    itemsContainer.innerHTML = '';
+    resArray.map(item => {
+        const element = document.createElement('div');
+        const card = () => {
+            return (`<div class="card_like">
                         <img src="images/like.svg" alt="like">
                     </div>
 
@@ -190,10 +213,9 @@ document.querySelectorAll('.filter input').forEach(elem => {
                         </p>
                     </div>
 
-                    <button class="card_button button ${!item.orderInfo.inStock ? 'gray-button' : ''}">
+                    <button class="card_button button ${!item.orderInfo.inStock ? 'gray-button' : ''}" onclick="event.stopPropagation()">
                         Add to cart
                     </button>
-
                     <div class="card_footer">
                         <div>
                             <img
@@ -216,15 +238,21 @@ document.querySelectorAll('.filter input').forEach(elem => {
                             </p>
                         </div>
                     </div>`)
-            };
-            element.onclick = () => innerModalCard(item);
-            element.classList.add('card');
-            element.insertAdjacentHTML('beforeend', card());
-            itemsContainer.insertAdjacentElement('beforeend', element);
-        });
-    })
-});
+        };
+        element.onclick = () => innerModalCard(item);
+        element.classList.add('card');
+        element.insertAdjacentHTML('beforeend', card());
+        itemsContainer.insertAdjacentElement('beforeend', element);
+    });
+}
 
+cardRender(items);
+
+
+document.querySelector('.cart-icon').addEventListener('change', function () {
+    const cart = document.querySelector('.cart');
+    cart.classList.toggle('cart-opener');
+});
 
 document.querySelector('.main_search-bar--filter').addEventListener('click', function () {
     document.querySelector('.filter').classList.toggle('open');
@@ -237,44 +265,3 @@ document.querySelectorAll('.filter_arrow').forEach(elem => {
         event.target.closest('.filter_header').nextElementSibling.classList.toggle('closed')
     })
 });
-
-
-// const filter = {
-//     display:[]
-// };
-
-// function filterUpdate(key,value){
-//     console.log(key,value.srcElement.defaultValue)
-//     if(value.srcElement.checked){
-//         let index = filter[key].find(filterValue => filterValue.id === value.srcElement.defaultValue)
-//         if(!index){
-//             filter[key].push({id:value.srcElement.defaultValue, from :value.srcElement.defaultValue.split("-")[0],to :value.srcElement.defaultValue.split("-")[1]});
-//         } }else{
-//         let index = filter[key].findIndex(filterValue => filterValue.id === value.srcElement.defaultValue)
-//         if(index>-1){
-//             filter[key].splice(index);
-//         }
-//
-//     }
-//     if(filter[key].length===0){
-//         createCard(items)
-//         return;
-//     }
-//     runFilter()
-// }
-//
-// function runFilter(){
-//
-//     let filterObjects = items.filter(device => filteredData(device));
-//     cardsContainer.innerHTML = "";
-//     createCard(filterObjects)
-// }
-//
-//
-// function filteredData(device){
-//     let filterDevice = filter.display;
-//     let res = filterDevice.find(filterItem=>  device.display > filterItem.from && device.display < filterItem.to)
-// //let allKeys =filter.keys()
-//     console.log(res);
-//     return !!res
-// }
